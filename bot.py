@@ -123,12 +123,7 @@ async def reset(ctx):
 
 
 def downloadY(ctx, url):
-    guild = ctx.message.guild
     info = ydl.extract_info(url, download=False)
-    #print(info['formats'])
-    req = requests.get(info['formats'][1]['url'])
-    req.raise_for_status()
-    #print(req)
     serverPlayList[ctx.guild.id][0].insert(0, discord.FFmpegPCMAudio(info['formats'][1]['url']))  # req.content))
     print('Source %s added in playlist' % ctx.message.content)
 
@@ -142,4 +137,5 @@ async def yt(ctx, url):
 if __name__ == '__main__':
     ydl = YoutubeDL()
     ydl.add_default_info_extractors()
+    print('Стартуем')
     bot.run(config.TOKEN)

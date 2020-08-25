@@ -1,13 +1,9 @@
-from discord.ext import commands
 from discord.ext.commands import Bot
 import discord
-from discord.voice_client import VoiceClient
-import asyncio
 import config
 from youtube_dl import YoutubeDL
 import os
 import requests
-import time
 import _thread
 
 
@@ -18,8 +14,7 @@ names = []
 #serverPlayList = {server:[list of sourveses, list of names, current Name]}
 serverPlayList = {}
 
-msList = os.listdir(config.MUSPATH)
-names = []
+
 
 for i in msList:
     if i[-4:] != '.mp3':
@@ -147,5 +142,4 @@ async def yt(ctx, url):
 if __name__ == '__main__':
     ydl = YoutubeDL()
     ydl.add_default_info_extractors()
-    firstM = True
     bot.run(config.TOKEN)
